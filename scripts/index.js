@@ -31,7 +31,7 @@
       });
       // Состояние Like
       likeButton.addEventListener("click", () => {
-        likeButton.classList.toggle("card__like-button--active"); // Like active
+        likeButton.classList.toggle("card__like-button_is-active"); // Like active
       });
 
       return cardElement; // Возвращаем созданный элемент карточки
