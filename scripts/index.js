@@ -16,7 +16,7 @@ const popupOpen = document.querySelector('.profile__add-button'); //Поиск �
 const popupCloseButton = popupPlace.querySelector('.popup__close'); // Поиск всех кнопок закрытия Popup
 const popupBigImg = document.querySelector(".popup_type_image"); // Поиск popup-а отображения увеличенного изображения
 const popupImage = document.querySelector('.popup__image'); // Поиск изображения
-const popupTitle = document.querySelector('.popup__title'); // Поиск описания региона
+const popupTitle = document.querySelector('.popup__caption'); // Поиск описания карточки
 
 function createCard(name, link) {
   const cardElement = cardTemplate.querySelector(".card").cloneNode(true); // Клонируем содержимое шаблона
@@ -70,9 +70,33 @@ popupPlace.addEventListener('click', (event) => { // Закрытие popup-a п
   }
 });
 
-//Функция открытия просмотра изображения карточки
-function bigImgCard(evt) {
-  openPopup(popupBigImg);
-  popupImage.src = evt.target.closest('.card__image').src;
-  popupTitle.textContent = evt.target.closest('.card__description').textContent;
-};
+// //Функция открытия просмотра изображения карточки
+// function largeImgCard(event) {
+//   openPopup(popupBigImg);
+//   popupImage.src = event.target.closest('.card__image').src;
+//   popupTitle.textContent = event.target.closest('.popup__caption').textContent;
+// };
+
+// Функция для открытия popup-а изображения
+function openImagePopup(link, name) {
+    popupImageElement.src = link; // Устанавливаем источник изображения
+    popupImageElement.alt = name; // Устанавливаем альтернативный текст
+    popupCaption.textContent = name; // Устанавливаем подпись к изображению
+
+    popupImage.classList.add('popup_is-opened'); // Добавляем класс для открытия
+}
+
+// Функция для закрытия popup-а
+function closeImagePopup() {
+    popupImage.classList.remove('popup_is-opened'); // Убираем класс для закрытия
+}
+
+// Обработчик события для кнопки закрытия
+popupCloseButton.addEventListener('click', closeImagePopup);
+
+// Закрытие popup-а по аналогии с добавлением карточки
+popupImage.addEventListener('click', (event) => {
+    if (event.target === popupImage) {
+        closeImagePopup();
+    }
+});
