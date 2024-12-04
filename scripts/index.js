@@ -10,6 +10,13 @@
 
 const cardTemplate = document.querySelector("#card-template").content; //Поиск шаблона карточки для добавления
 const cardContainer = document.querySelector(".places__list"); //Поиск раздела, куда будут добавляться карточки
+const popupPlace = document.querySelector(".popup_type_new-card"); // Поиск popup-a редактирования карточек
+const popupChangeForm = popupPlace.querySelector(".popup__form_new-place"); // Поиск формы для изменения карточек
+const popupOpen = document.querySelector('.profile__add-button'); //Поиск кнопки добавления карточек
+const popupCloseButton = popupPlace.querySelector('.popup__close'); // Поиск всех кнопок закрытия Popup
+const popupBigImg = document.querySelector(".popup_type_image"); // Поиск popup-а отображения увеличенного изображения
+const popupImage = document.querySelector('.popup__image'); // Поиск изображения
+const popupTitle = document.querySelector('.popup__title'); // Поиск описания региона
 
 function createCard(name, link) {
   const cardElement = cardTemplate.querySelector(".card").cloneNode(true); // Клонируем содержимое шаблона
@@ -41,38 +48,12 @@ initialCards.forEach((card) => {
   cardContainer.append(createCard(card.name, card.link));
 });
 
-const popupPlace = document.querySelector(".popup_type_new-card"); // Поиск popup-a редактирования карточек
-const popupChangeForm = popupPlace.querySelector(".popup__form_new-place"); // Поиск формы для изменения карточек
-const popupOpen = document.querySelector('.profile__add-button'); //Поиск кнопки добавления карточек
-const popupCloseButton = popupPlace.querySelector('.popup__close'); // Поиск всех кнопок закрытия Popup
-const popupImg = document.querySelector(".popup_type_image"); // Поиск popup-а отображения увеличенного изображения
-
-// function togglePopup(popup, isOpen) {
-//   if (isOpen) {
-//     popup.classList.add('popup_opened'); // Класс для открытия
-//   } else {
-//     popup.classList.remove('popup_opened'); // Условие для закрытия
-//   }
-// }
-
-// function setUpPopup() {
-//   popupOpen.addEventListener('click', () => {
-//     togglePopup(popupPlace, true); // Открытие попапа
-//   });
-//   popupClose.forEach(button => {
-//     button.addEventListener('click', () => {
-//       togglePopup(popupPlace, false); // Закрытие попапа
-//     });
-//   });
-// }
-// setUpPopup()
-
 function openPopup(popup) {  // Функция для открытия попапа
-  popup.classList.add('popup_opened'); // Добавляем класс для открытия
+  popup.classList.add('popup_is-opened'); // Добавляем класс для открытия
 }
 
 function closePopup(popup) {  // Функция для закрытия попапа
-  popup.classList.remove('popup_opened'); // Убираем класс для закрытия
+  popup.classList.remove('popup_is-opened'); // Убираем класс для закрытия
 }
 
 popupOpen.addEventListener('click', () => {
@@ -88,3 +69,10 @@ popupPlace.addEventListener('click', (event) => { // Закрытие попап
       closePopup(popupPlace); // Закрываем попап
   }
 });
+
+//Функция открытия просмотра изображения карточки
+function bigImgCard(evt) {
+  openPopup(popupBigImg);
+  popupImage.src = evt.target.closest('.card__image').src;
+  popupTitle.textContent = evt.target.closest('.card__description').textContent;
+};
