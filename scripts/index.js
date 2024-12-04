@@ -48,25 +48,25 @@ initialCards.forEach((card) => {
   cardContainer.append(createCard(card.name, card.link));
 });
 
-function openPopup(popup) {  // Функция для открытия попапа
+function openPopup(popup) {  // Функция для открытия popup-а
   popup.classList.add('popup_is-opened'); // Добавляем класс для открытия
 }
 
-function closePopup(popup) {  // Функция для закрытия попапа
+function closePopup(popup) {  // Функция для закрытия popup-а
   popup.classList.remove('popup_is-opened'); // Убираем класс для закрытия
 }
 
 popupOpen.addEventListener('click', () => {
-  openPopup(popupPlace); // Открываем попап при нажатии на кнопку добавления
+  openPopup(popupPlace); // Открываем popup при нажатии на кнопку добавления
 });
 
 popupCloseButton.addEventListener('click', () => {
-  closePopup(popupPlace); // Закрываем попап при нажатии на кнопку закрытия
+  closePopup(popupPlace); // Закрываем popup при нажатии на кнопку закрытия
 });
 
-popupPlace.addEventListener('click', (event) => { // Закрытие попапа при клике на область вне формы
-  if (event.target === popupPlace) { // Проверяем, что клик был именно по области попапа
-      closePopup(popupPlace); // Закрываем попап
+popupPlace.addEventListener('click', (event) => { // Закрытие popup-a при клике на область вне формы
+  if (event.target === popupPlace) { // Проверяем, что клик был именно по области popup-a
+      closePopup(popupPlace); // Закрываем popup
   }
 });
 
