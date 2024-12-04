@@ -45,24 +45,46 @@ const popupPlace = document.querySelector(".popup_type_new-card"); // Поиск
 const popupChangeForm = popupPlace.querySelector(".popup__form_new-place"); // Поиск формы для изменения карточек
 const popupOpen = document.querySelector('.profile__add-button'); //Поиск кнопки добавления карточек
 const popupImg = document.querySelector(".popup_type_image"); // Поиск popup-а отображения увеличенного изображения
-const popupClose = document.querySelectorAll('popup__close'); // Поиск всех кнопок закрытия Popup
+const popupCloseButton = popupPlace.querySelector('.popup__close'); // Поиск всех кнопок закрытия Popup
 
-function togglePopup(popup, isOpen) {
-  if (isOpen) {
-    popup.classList.add('popup_opened'); // Класс для открытия
-  } else {
-    popup.classList.remove('popup_opened'); // Условие для закрытия
+// function togglePopup(popup, isOpen) {
+//   if (isOpen) {
+//     popup.classList.add('popup_opened'); // Класс для открытия
+//   } else {
+//     popup.classList.remove('popup_opened'); // Условие для закрытия
+//   }
+// }
+
+// function setUpPopup() {
+//   popupOpen.addEventListener('click', () => {
+//     togglePopup(popupPlace, true); // Открытие попапа
+//   });
+//   popupClose.forEach(button => {
+//     button.addEventListener('click', () => {
+//       togglePopup(popupPlace, false); // Закрытие попапа
+//     });
+//   });
+// }
+// setUpPopup()
+
+function openPopup(item) {  // Функция для открытия попапа
+  item.classList.add('popup_opened'); // Добавляем класс для открытия
+}
+
+function closePopup(item) {  // Функция для закрытия попапа
+  item.classList.remove('popup_opened'); // Убираем класс для закрытия
+}
+
+popupOpen.addEventListener('click', () => {
+  openPopup(popupPlace); // Открываем попап при нажатии на кнопку добавления
+});
+
+popupCloseButton.addEventListener('click', () => {
+  closePopup(popupPlace); // Закрываем попап при нажатии на кнопку закрытия
+});
+
+popupPlace.addEventListener('click', (event) => { // Закрытие попапа при клике на область
+  if (event.target === popupPlace) { // Проверяем, что клик был именно по области попапа
+      closePopup(popupPlace); // Закрываем попап
   }
-}
-
-function setUpPopup() {
-  popupOpen.addEventListener('click', () => {
-    togglePopup(popupPlace, true); // Открытие попапа
-  });
-  popupClose.forEach(button => {
-    button.addEventListener('click', () => {
-      togglePopup(popupPlace, false); // Закрытие попапа
-    });
-  });
-}
-setUpPopup()
+});
