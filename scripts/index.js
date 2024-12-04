@@ -44,8 +44,8 @@ initialCards.forEach((card) => {
 const popupPlace = document.querySelector(".popup_type_new-card"); // Поиск popup-a редактирования карточек
 const popupChangeForm = popupPlace.querySelector(".popup__form_new-place"); // Поиск формы для изменения карточек
 const popupOpen = document.querySelector('.profile__add-button'); //Поиск кнопки добавления карточек
-const popupImg = document.querySelector(".popup_type_image"); // Поиск popup-а отображения увеличенного изображения
 const popupCloseButton = popupPlace.querySelector('.popup__close'); // Поиск всех кнопок закрытия Popup
+const popupImg = document.querySelector(".popup_type_image"); // Поиск popup-а отображения увеличенного изображения
 
 // function togglePopup(popup, isOpen) {
 //   if (isOpen) {
@@ -67,12 +67,12 @@ const popupCloseButton = popupPlace.querySelector('.popup__close'); // Поис�
 // }
 // setUpPopup()
 
-function openPopup(item) {  // Функция для открытия попапа
-  item.classList.add('popup_opened'); // Добавляем класс для открытия
+function openPopup(popup) {  // Функция для открытия попапа
+  popup.classList.add('popup_opened'); // Добавляем класс для открытия
 }
 
-function closePopup(item) {  // Функция для закрытия попапа
-  item.classList.remove('popup_opened'); // Убираем класс для закрытия
+function closePopup(popup) {  // Функция для закрытия попапа
+  popup.classList.remove('popup_opened'); // Убираем класс для закрытия
 }
 
 popupOpen.addEventListener('click', () => {
@@ -83,7 +83,7 @@ popupCloseButton.addEventListener('click', () => {
   closePopup(popupPlace); // Закрываем попап при нажатии на кнопку закрытия
 });
 
-popupPlace.addEventListener('click', (event) => { // Закрытие попапа при клике на область
+popupPlace.addEventListener('click', (event) => { // Закрытие попапа при клике на область вне формы
   if (event.target === popupPlace) { // Проверяем, что клик был именно по области попапа
       closePopup(popupPlace); // Закрываем попап
   }
