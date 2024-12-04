@@ -42,7 +42,27 @@ initialCards.forEach((card) => {
 });
 
 const popupPlace = document.querySelector(".popup_type_new-card"); // Поиск popup-a редактирования карточек
-const popupOpen = document.querySelector(".profile__add-button"); // Поиск кнопки открытия редактирования карточек
 const popupChangeForm = popupPlace.querySelector(".popup__form_new-place"); // Поиск формы для изменения карточек
+const popupOpen = document.querySelector('.profile__add-button'); //Поиск кнопки добавления карточек
 const popupImg = document.querySelector(".popup_type_image"); // Поиск popup-а отображения увеличенного изображения
-const popupClose = document.querySelectorAll('popup__close'); // Поиск крестиков закрытия Popup
+const popupClose = document.querySelectorAll('popup__close'); // Поиск всех кнопок закрытия Popup
+
+function togglePopup(popup, isOpen) {
+  if (isOpen) {
+    popup.classList.add('popup_opened'); // Класс для открытия
+  } else {
+    popup.classList.remove('popup_opened'); // Условие для закрытия
+  }
+}
+
+function setUpPopup() {
+  popupOpen.addEventListener('click', () => {
+    togglePopup(popupPlace, true); // Открытие попапа
+  });
+  popupClose.forEach(button => {
+    button.addEventListener('click', () => {
+      togglePopup(popupPlace, false); // Закрытие попапа
+    });
+  });
+}
+setUpPopup()
