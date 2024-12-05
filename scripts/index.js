@@ -1,4 +1,3 @@
-
 const cardTemplate = document.querySelector("#card-template").content; //Поиск шаблона карточки для добавления
 const cardContainer = document.querySelector(".places__list"); //Поиск раздела, куда будут добавляться карточки
 const popupPlace = document.querySelector(".popup_type_new-card"); // Поиск popup-a редактирования карточек
@@ -15,6 +14,10 @@ function openImagePopup(imageSrc, imageAlt) {
   popupImage.alt = imageAlt; // Альтернативный текст
   popupTitle.textContent = imageAlt; // Текст подписи
   openPopup(popupBigImg); // Открываем popup
+}
+
+function deleteCard(cardElement) {
+  cardElement.remove(); // Удаляем карточку из DOM
 }
 
 function createCard(name, link) {
@@ -35,10 +38,10 @@ function createCard(name, link) {
     openImagePopup(link, name); // Открывает popup с изображением и заголовком
   });
 
-  // Удаление карточки
   deleteButton.addEventListener("click", () => {
-    cardElement.remove(); // Удаляем карточку при нажатии на кнопку удаления
+    deleteCard(cardElement); // Удаляем карточку
   });
+
   // Состояние Like
   likeButton.addEventListener("click", () => {
     likeButton.classList.toggle("card__like-button_is-active"); // Like active
