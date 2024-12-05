@@ -18,7 +18,8 @@ const popupBigImg = document.querySelector(".popup_type_image"); // Поиск p
 const popupImage = document.querySelector(".popup__image"); // Поиск изображения
 const popupTitle = document.querySelector(".popup__caption"); // Поиск описания карточки
 
-function openImagePopup(imageSrc, imageAlt) {  // Функция для открытия popup-а изображения
+function openImagePopup(imageSrc, imageAlt) {
+  // Функция для открытия popup-а изображения
   popupImage.src = imageSrc; // Источник изображения
   popupImage.alt = imageAlt; // Альтернативный текст
   popupTitle.textContent = imageAlt; // Текст подписи
@@ -38,10 +39,10 @@ function createCard(name, link) {
   cardTitle.textContent = name; // Name для заголовка
   image.alt = name; // Текст для скриндеров
 
-// Добавляем обработчик для открытия popupа с изображением
-image.addEventListener("click", () => {
-  openImagePopup(link, name); // Открывает popup с изображением и заголовком
-});
+  // Добавляем обработчик для открытия popup-а с изображением
+  image.addEventListener("click", () => {
+    openImagePopup(link, name); // Открывает popup с изображением и заголовком
+  });
 
   // Удаление карточки
   deleteButton.addEventListener("click", () => {
@@ -87,9 +88,9 @@ popupPlace.addEventListener("click", (event) => {
 });
 
 // Закрыть popup увеличенного изображения
-const imageCloseButton = popupBigImg.querySelector('.popup__close');
-imageCloseButton.addEventListener('click', () => closePopup(popupBigImg));
-popupBigImg.addEventListener('click', (event) => {
+const imageCloseButton = popupBigImg.querySelector(".popup__close");
+imageCloseButton.addEventListener("click", () => closePopup(popupBigImg));
+popupBigImg.addEventListener("click", (event) => {
   if (event.target === popupBigImg) {
     closePopup(popupBigImg);
   }
