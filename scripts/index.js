@@ -18,6 +18,13 @@ const popupBigImg = document.querySelector(".popup_type_image"); // Поиск p
 const popupImage = document.querySelector(".popup__image"); // Поиск изображения
 const popupTitle = document.querySelector(".popup__caption"); // Поиск описания карточки
 
+function openImagePopup(imageSrc, imageAlt) {  // Функция для открытия popup-а изображения
+  popupImage.src = imageSrc; // Источник изображения
+  popupImage.alt = imageAlt; // Альтернативный текст
+  popupTitle.textContent = imageAlt; // Текст подписи
+  openPopup(popupBigImg); // Открываем popup
+}
+
 function createCard(name, link) {
   const cardElement = cardTemplate.querySelector(".card").cloneNode(true); // Клонируем содержимое шаблона
 
@@ -30,6 +37,11 @@ function createCard(name, link) {
   image.src = link; // Значение Link для ссылки
   cardTitle.textContent = name; // Name для заголовка
   image.alt = name; // Текст для скриндеров
+
+// Добавляем обработчик для открытия popupа с изображением
+image.addEventListener("click", () => {
+  openImagePopup(link, name); // Открывает popup с изображением и заголовком
+});
 
   // Удаление карточки
   deleteButton.addEventListener("click", () => {
@@ -74,30 +86,11 @@ popupPlace.addEventListener("click", (event) => {
   }
 });
 
-// Функция для открытия popup-а изображения
-function openImagePopup(link, name) {
-  popupImage.src = link; // Устанавливаем источник изображения
-  popupImage.alt = name; // Устанавливаем альтернативный текст
-  popupTitle.textContent = name; // Устанавливаем подпись к изображению
-
-  popupImage.classList.add("popup_is-opened"); // Добавляем класс для открытия
-}
-
-// Функция для закрытия popup-а
-function closeImagePopup() {
-  popupImage.classList.remove("popup_is-opened"); // Убираем класс для закрытия
-}
-
-// Обработчик события для кнопки закрытия
-popupCloseButton.addEventListener("click", closeImagePopup);
-
-// Закрытие popup-а по аналогии с добавлением карточки
-popupImage.addEventListener("click", (event) => {
-  if (event.target === popupImage) {
-    closeImagePopup();
+// Закрыть popup увеличенного изображения
+const imageCloseButton = popupBigImg.querySelector('.popup__close');
+imageCloseButton.addEventListener('click', () => closePopup(popupBigImg));
+popupBigImg.addEventListener('click', (event) => {
+  if (event.target === popupBigImg) {
+    closePopup(popupBigImg);
   }
-});
-const image = cardElement.querySelector(".card__image");
-image.addEventListener("click", () => {
-  openImagePopup(); // Открываем изображение
 });
