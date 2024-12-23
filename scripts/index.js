@@ -55,15 +55,28 @@ initialCards.forEach((card) => {
   cardContainer.append(createCard(card.name, card.link));
 });
 
+let currentPopup = null; // Переменная для отслеживания открытого popup-a
+
 function openPopup(popup) {
-  // Функция для открытия popup-а
   popup.classList.add("popup_is-opened"); // Добавляем класс для открытия
+  currentPopup = popup; // Устанавливаем текущий открытый popup
 }
 
 function closePopup(popup) {
-  // Функция для закрытия popup-а
   popup.classList.remove("popup_is-opened"); // Убираем класс для закрытия
+  if (currentPopup === popup) {
+    currentPopup = null; // Сбрасываем текущий открытый popup
+  }
 }
+
+function handleEscClose(event) {
+  if (event.key === "Escape" && currentPopup) {
+    closePopup(currentPopup); // Закрываем текущий открытый popup
+  }
+}
+
+// Добавляем обработчик события keydown на документ
+document.addEventListener("keydown", handleEscClose);
 
 popupOpen.addEventListener("click", () => {
   openPopup(popupPlace); // Открываем popup при нажатии на кнопку добавления
@@ -76,7 +89,6 @@ popupCloseButton.addEventListener("click", () => {
 popupPlace.addEventListener("click", (event) => {
   // Закрытие popup-a при клике на область вне формы
   if (event.target === popupPlace) {
-    // Проверяем, что клик был именно по области popup-a
     closePopup(popupPlace); // Закрываем popup
   }
 });
