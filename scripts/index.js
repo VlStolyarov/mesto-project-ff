@@ -3,10 +3,13 @@ const cardContainer = document.querySelector(".places__list"); //Поиск ра
 const popupPlace = document.querySelector(".popup_type_new-card"); // Поиск popup-a редактирования карточек
 const popupChangeForm = popupPlace.querySelector(".popup__form_new-place"); // Поиск формы для изменения карточек
 const popupOpen = document.querySelector(".profile__add-button"); //Поиск кнопки добавления карточек
-const popupCloseButton = popupPlace.querySelector(".popup__close"); // Поиск всех кнопок закрытия Popup
+const popupCloseButton = popupPlace.querySelector(".popup__close"); // Поиск кнопки закрытия Popup
 const popupBigImg = document.querySelector(".popup_type_image"); // Поиск popup-а отображения увеличенного изображения
 const popupImage = document.querySelector(".popup__image"); // Поиск изображения
 const popupTitle = document.querySelector(".popup__caption"); // Поиск описания карточки
+const popupEditProfile = document.querySelector(".popup_type_edit"); // Поиск popup-а редактирования профиля
+const popupEditProfileOpenButton = document.querySelector(".profile__edit-button"); // Кнопка для открытия попапа редактирования
+const popupEditProfileCloseButton = popupEditProfile.querySelector(".popup__close");
 
 function openImagePopup(imageSrc, imageAlt) {
   // Функция для открытия popup-а изображения
@@ -101,3 +104,52 @@ popupBigImg.addEventListener("click", (event) => {
     closePopup(popupBigImg);
   }
 });
+
+
+popupEditProfileOpenButton.addEventListener("click", () => {
+  openPopup(popupEditProfile); // Открываем popup редактирования профиля
+});
+
+popupEditProfileCloseButton.addEventListener("click", () => {
+  closePopup(popupEditProfile); // Закрываем popup редактирования профиля
+});
+
+popupEditProfile.addEventListener("click", (event) => {
+  if (event.target === popupEditProfile) {
+    closePopup(popupEditProfile); // Закрываем popup при клике на область вне формы
+  }
+});
+
+// Находим форму в DOM
+const formElement = document.querySelector('.popup__form'); // Замените на ваш селектор формы
+
+// Находим поля формы в DOM
+const nameInput = formElement.querySelector('input[name="name"]'); // Поле для имени
+const jobInput = formElement.querySelector('input[name="description"]'); // Поле для информации о себе
+
+// Обработчик «отправки» формы, хотя пока
+// она никуда отправляться не будет
+function handleFormSubmit(evt) {
+    evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
+    // Так мы можем определить свою логику отправки.
+    // О том, как это делать, расскажем позже.
+
+    // Получите значение полей jobInput и nameInput из свойства value
+    const name = nameInput.value;
+    const job = jobInput.value;
+
+     // Выберите элементы, куда должны быть вставлены значения полей
+    const profileTitle = document.querySelector('.profile__title');
+    const profileDescription = document.querySelector('.profile__description');
+
+    // Вставьте новые значения с помощью textContent
+    profileTitle.textContent = name;
+    profileDescription.textContent = job;
+
+    // Закрываем попап после сохранения
+    closePopup(popupEditProfile);
+}
+
+// Прикрепляем обработчик к форме:
+// он будет следить за событием “submit” - «отправка»
+formElement.addEventListener('submit', handleFormSubmit);
