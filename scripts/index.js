@@ -8,8 +8,18 @@ const popupBigImg = document.querySelector(".popup_type_image"); // Поиск p
 const popupImage = document.querySelector(".popup__image"); // Поиск изображения
 const popupTitle = document.querySelector(".popup__caption"); // Поиск описания карточки
 const popupEditProfile = document.querySelector(".popup_type_edit"); // Поиск popup-а редактирования профиля
-const popupEditProfileOpenButton = document.querySelector(".profile__edit-button"); // Кнопка для открытия попапа редактирования
-const popupEditProfileCloseButton = popupEditProfile.querySelector(".popup__close");
+const popupEditProfileOpenButton = document.querySelector(".profile__edit-button"); // Кнопка для открытия popup-a редактирования
+const popupEditProfileCloseButton = popupEditProfile.querySelector(".popup__close");// Крестик закрытия popup-а редактирования профиля
+const formElement = document.querySelector('.popup__form'); // поиск формы редактирования профиля
+const nameInput = formElement.querySelector('input[name="name"]'); // Поле для имени
+const jobInput = formElement.querySelector('input[name="description"]'); // Поле для информации о себе
+const cardElement = document.querySelector('.popup__form[name="new-place"]'); // поиск формы карточки
+
+// Находим поля формы в DOM
+const cardNameInput = cardElement.querySelector('input[name="place-name"]');
+const linkInput = cardElement.querySelector('input[name="link"]');
+
+
 
 
 
@@ -107,7 +117,7 @@ popupBigImg.addEventListener("click", (event) => {
   }
 });
 
-
+        // Редактирование профиля
 popupEditProfileOpenButton.addEventListener("click", () => {
   openPopup(popupEditProfile); // Открываем popup редактирования профиля
 });
@@ -121,13 +131,6 @@ popupEditProfile.addEventListener("click", (event) => {
     closePopup(popupEditProfile); // Закрываем popup при клике на область вне формы
   }
 });
-
-// Находим форму в DOM
-const formElement = document.querySelector('.popup__form'); // Замените на ваш селектор формы
-
-// Находим поля формы в DOM
-const nameInput = formElement.querySelector('input[name="name"]'); // Поле для имени
-const jobInput = formElement.querySelector('input[name="description"]'); // Поле для информации о себе
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
@@ -155,3 +158,40 @@ function handleFormSubmit(evt) {
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 formElement.addEventListener('submit', handleFormSubmit);
+
+//      //Добавление карточки
+
+// Обработчик «отправки» формы
+function handleFormSubmit(evt) {
+    evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
+    // Так мы можем определить свою логику отправки.
+    // О том, как это делать, расскажем позже.
+
+    // Получаем значение полей linkInput и cardNameInput из свойства value
+    const placeName = cardNameInput.value;
+    const link = linkInput.value;
+
+    // Получаем шаблон карточки
+    const cardTemplate = document.getElementById('card-template').content.cloneNode(true);
+
+    // Заполняем шаблон данными
+    const cardTitle = cardTemplate.querySelector('.card__title');
+    const cardImage = cardTemplate.querySelector('.card__image');
+
+    cardTitle.textContent = placeName;
+    cardImage.src = link;
+    cardImage.alt = placeName;
+
+    // Добавляем новую карточку в начало контейнера
+    const cardContainer = document.querySelector('.places__list');
+    cardContainer.prepend(cardTemplate);
+
+    // Закрываем popup
+    closePopup(document.querySelector('.popup_type_new-card'));
+
+    // Очищаем форму
+    cardElement.reset();
+}
+
+// Прикрепляем обработчик к форме
+cardElement.addEventListener('submit', handleFormSubmit);
