@@ -11,6 +11,8 @@ const popupEditProfile = document.querySelector(".popup_type_edit"); // Поис
 const popupEditProfileOpenButton = document.querySelector(".profile__edit-button"); // Кнопка для открытия попапа редактирования
 const popupEditProfileCloseButton = popupEditProfile.querySelector(".popup__close");
 
+
+
 function openImagePopup(imageSrc, imageAlt) {
   // Функция для открытия popup-а изображения
   popupImage.src = imageSrc; // Источник изображения
