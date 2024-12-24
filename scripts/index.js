@@ -162,7 +162,7 @@ formElement.addEventListener('submit', handleFormSubmit);
 //      //Добавление карточки
 
 // Обработчик «отправки» формы
-function handleFormSubmitCard(evt) {
+function handleFormSubmit(evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
     // Так мы можем определить свою логику отправки.
     // О том, как это делать, расскажем позже.
