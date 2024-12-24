@@ -1,3 +1,4 @@
+import '../pages/index.css';
 const cardTemplate = document.querySelector("#card-template").content; //Поиск шаблона карточки для добавления
 const cardContainer = document.querySelector(".places__list"); //Поиск раздела, куда будут добавляться карточки
 const popupPlace = document.querySelector(".popup_type_new-card"); // Поиск popup-a редактирования карточек
@@ -162,7 +163,7 @@ formElement.addEventListener('submit', handleFormSubmit);
 //      //Добавление карточки
 
 // Обработчик «отправки» формы
-function handleFormSubmit(evt) {
+function handleFormSubmitCard(evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
     // Так мы можем определить свою логику отправки.
     // О том, как это делать, расскажем позже.
