@@ -2,18 +2,18 @@ import "../pages/index.css";
 import { initialCards } from "./cards.js";
 import { createCard } from "./createCard.js";
 import { openPopup, closePopup } from "./modal.js";
-import { handleFormSubmit } from "./handleFormSubmit.js";
+import { handleFormSubmitProfile } from "./handleFormSubmitProfile.js";
 import { handleFormSubmitCard } from "./handleFormSubmitCard.js";
 import {
   popupBigImg,
   cardContainer,
   popupPlace,
-  popupOpen,
+  profilePopupOpen,
   popupCloseButton,
   popupEditProfile,
   popupEditProfileOpenButton,
   popupEditProfileCloseButton,
-  formElement,
+  profileFormElement,
   cardElement,
   imageCloseButton,
 } from "./globalSelectors.js";
@@ -24,7 +24,7 @@ initialCards.forEach((card) => {
   cardContainer.append(createCard(card.name, card.link, selectorsCard));
 });
 
-popupOpen.addEventListener("click", () => {
+profilePopupOpen.addEventListener("click", () => {
   openPopup(popupPlace); // Открываем popup при нажатии на кнопку добавления
 });
 
@@ -64,7 +64,7 @@ popupEditProfile.addEventListener("click", (event) => {
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-formElement.addEventListener("submit", handleFormSubmit);
+profileFormElement.addEventListener("submit", handleFormSubmitProfile);
 
 // Прикрепляем обработчик к форме
 cardElement.addEventListener("submit", handleFormSubmitCard);

@@ -9,7 +9,7 @@ import { closePopup } from "./modal";
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
-export function handleFormSubmit(evt) {
+export function handleFormSubmitProfile(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   // Так мы можем определить свою логику отправки.
   // О том, как это делать, расскажем позже.
