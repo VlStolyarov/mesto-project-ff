@@ -3,7 +3,7 @@ const cardContainer = document.querySelector(".places__list"); //Поиск ра
 const popupPlace = document.querySelector(".popup_type_new-card"); // Поиск popup-a редактирования карточек
 const popupChangeForm = popupPlace.querySelector(".popup__form_new-place"); // Поиск формы для изменения карточек
 const profilePopupOpen = document.querySelector(".profile__add-button"); //Поиск кнопки добавления карточек
-const popupCloseButton = popupPlace.querySelector(".popup__close"); // Поиск кнопки закрытия Popup
+const newCardPopupCloseButton = popupPlace.querySelector(".popup__close"); // Поиск кнопки закрытия Popup
 const popupBigImg = document.querySelector(".popup_type_image"); // Поиск popup-а отображения увеличенного изображения
 const popupImage = document.querySelector(".popup__image"); // Поиск изображения
 const popupTitle = document.querySelector(".popup__caption"); // Поиск описания карточки
@@ -29,7 +29,7 @@ export {
   popupPlace,
   popupChangeForm,
   profilePopupOpen,
-  popupCloseButton,
+  newCardPopupCloseButton,
   popupBigImg,
   popupImage,
   popupTitle,

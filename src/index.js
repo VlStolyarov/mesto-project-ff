@@ -9,7 +9,7 @@ import {
   cardContainer,
   popupPlace,
   profilePopupOpen,
-  popupCloseButton,
+  newCardPopupCloseButton,
   popupEditProfile,
   popupEditProfileOpenButton,
   popupEditProfileCloseButton,
@@ -28,7 +28,7 @@ profilePopupOpen.addEventListener("click", () => {
   openModal(popupPlace); // Открываем popup при нажатии на кнопку добавления
 });
 
-popupCloseButton.addEventListener("click", () => {
+newCardPopupCloseButton.addEventListener("click", () => {
   closeModal(popupPlace); // Закрываем popup при нажатии на кнопку закрытия
 });
 
