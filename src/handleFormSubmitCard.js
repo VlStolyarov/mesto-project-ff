@@ -4,7 +4,7 @@ import {
   cardContainer,
   popupPlace,
 } from "./globalSelectors.js";
-import { closePopup } from "./modal.js";
+import { closeModal } from "./modal.js";
 import { createCard } from "./createCard.js";
 import { selectorsCard } from "./selectorsCard.js";
 import { cardElement } from "./globalSelectors.js";
@@ -24,7 +24,7 @@ export function handleFormSubmitCard(evt) {
   cardContainer.prepend(newCard);
 
   // Закрываем popup
-  closePopup(popupPlace);
+  closeModal(popupPlace);
 
   // Очищаем форму
   cardElement.reset();

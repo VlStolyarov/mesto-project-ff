@@ -5,7 +5,7 @@ import {
   profileDescription,
   popupEditProfile,
 } from "./globalSelectors";
-import { closePopup } from "./modal";
+import { closeModal } from "./modal";
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
@@ -23,5 +23,5 @@ export function handleFormSubmitProfile(evt) {
   profileDescription.textContent = job;
 
   // Закрываем попап после сохранения
-  closePopup(popupEditProfile);
+  closeModal(popupEditProfile);
 }

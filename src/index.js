@@ -1,7 +1,7 @@
 import "../pages/index.css";
 import { initialCards } from "./cards.js";
 import { createCard } from "./createCard.js";
-import { openPopup, closePopup } from "./modal.js";
+import { openModal, closeModal } from "./modal.js";
 import { handleFormSubmitProfile } from "./handleFormSubmitProfile.js";
 import { handleFormSubmitCard } from "./handleFormSubmitCard.js";
 import {
@@ -25,40 +25,40 @@ initialCards.forEach((card) => {
 });
 
 profilePopupOpen.addEventListener("click", () => {
-  openPopup(popupPlace); // Открываем popup при нажатии на кнопку добавления
+  openModal(popupPlace); // Открываем popup при нажатии на кнопку добавления
 });
 
 popupCloseButton.addEventListener("click", () => {
-  closePopup(popupPlace); // Закрываем popup при нажатии на кнопку закрытия
+  closeModal(popupPlace); // Закрываем popup при нажатии на кнопку закрытия
 });
 
 popupPlace.addEventListener("click", (event) => {
   // Закрытие popup-a при клике на область вне формы
   if (event.target === popupPlace) {
-    closePopup(popupPlace); // Закрываем popup
+    closeModal(popupPlace); // Закрываем popup
   }
 });
 
 // Закрыть popup увеличенного изображения
-imageCloseButton.addEventListener("click", () => closePopup(popupBigImg));
+imageCloseButton.addEventListener("click", () => closeModal(popupBigImg));
 popupBigImg.addEventListener("click", (event) => {
   if (event.target === popupBigImg) {
-    closePopup(popupBigImg);
+    closeModal(popupBigImg);
   }
 });
 
 // Редактирование профиля
 popupEditProfileOpenButton.addEventListener("click", () => {
-  openPopup(popupEditProfile); // Открываем popup редактирования профиля
+  openModal(popupEditProfile); // Открываем popup редактирования профиля
 });
 
 popupEditProfileCloseButton.addEventListener("click", () => {
-  closePopup(popupEditProfile); // Закрываем popup редактирования профиля
+  closeModal(popupEditProfile); // Закрываем popup редактирования профиля
 });
 
 popupEditProfile.addEventListener("click", (event) => {
   if (event.target === popupEditProfile) {
-    closePopup(popupEditProfile); // Закрываем popup при клике на область вне формы
+    closeModal(popupEditProfile); // Закрываем popup при клике на область вне формы
   }
 });
 
