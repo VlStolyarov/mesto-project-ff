@@ -3,6 +3,7 @@ import { initialCards } from "./cards.js";
 import { createCard } from "./createCard.js";
 import { openPopup, closePopup } from "./modal.js";
 import { handleFormSubmit } from "./handleFormSubmit.js";
+import { handleFormSubmitCard } from "./handleFormSubmitCard.js";
 import {
   popupBigImg,
   cardContainer,
@@ -66,4 +67,4 @@ popupEditProfile.addEventListener("click", (event) => {
 formElement.addEventListener("submit", handleFormSubmit);
 
 // Прикрепляем обработчик к форме
-cardElement.addEventListener("submit", handleFormSubmit);
+cardElement.addEventListener("submit", handleFormSubmitCard);

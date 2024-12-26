@@ -7,9 +7,10 @@ import {
 import { closePopup } from "./modal.js";
 import { createCard } from "./createCard.js";
 import { selectorsCard } from "./selectorsCard.js";
+import { cardElement } from "./globalSelectors.js";
 
 // Обработчик «отправки» формы
-function handleFormSubmitCard(evt) {
+export function handleFormSubmitCard(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   // Так мы можем определить свою логику отправки.
   // О том, как это делать, расскажем позже.
