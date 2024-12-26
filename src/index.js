@@ -1,4 +1,5 @@
 import '../pages/index.css';
+import {initialCards} from './cards.js';
 const cardTemplate = document.querySelector("#card-template").content; //Поиск шаблона карточки для добавления
 const cardContainer = document.querySelector(".places__list"); //Поиск раздела, куда будут добавляться карточки
 const popupPlace = document.querySelector(".popup_type_new-card"); // Поиск popup-a редактирования карточек
@@ -15,6 +16,9 @@ const formElement = document.querySelector('.popup__form'); // поиск фор
 const nameInput = formElement.querySelector('input[name="name"]'); // Поле для имени
 const jobInput = formElement.querySelector('input[name="description"]'); // Поле для информации о себе
 const cardElement = document.querySelector('.popup__form[name="new-place"]'); // поиск формы карточки
+
+export {cardTemplate , cardContainer , popupPlace ,  popupChangeForm , popupOpen, popupCloseButton , popupBigImg , popupImage , popupTitle , popupEditProfile ,
+  popupEditProfileOpenButton , formElement , nameInput , jobInput , cardElement};
 
 // Находим поля формы в DOM
 const cardNameInput = cardElement.querySelector('input[name="place-name"]');
