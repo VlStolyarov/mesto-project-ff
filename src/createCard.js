@@ -2,7 +2,7 @@ import { cardTemplate } from "./globalSelectors";
 import { deleteCard } from "./deleteCard";
 import { openImagePopup } from "./openImagePopup";
 
-export function createCard(name, link, selectors) {
+export function createCard(name, link, selectors, likeHandler) {
   const cardElement = cardTemplate
     .querySelector(selectors.selectorCard)
     .cloneNode(true); // Клонируем содержимое шаблона
@@ -30,7 +30,7 @@ export function createCard(name, link, selectors) {
 
   // Состояние Like
   likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle(selectors.selectorToggleLikeButton); // Like active
+    likeHandler(likeButton, selectors); // Like active
   });
 
   return cardElement; // Возвращаем созданный элемент карточки

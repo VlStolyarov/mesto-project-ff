@@ -18,10 +18,13 @@ import {
   imageCloseButton,
 } from "./globalSelectors.js";
 import { selectorsCard } from "./selectorsCard.js";
+import { handleLike } from "./handleLike.js";
 
 //Создание карточек из массива
 initialCards.forEach((card) => {
-  cardContainer.append(createCard(card.name, card.link, selectorsCard));
+  cardContainer.append(
+    createCard(card.name, card.link, selectorsCard, handleLike)
+  );
 });
 
 profilePopupOpen.addEventListener("click", () => {

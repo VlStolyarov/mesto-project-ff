@@ -8,6 +8,7 @@ import { closeModal } from "./modal.js";
 import { createCard } from "./createCard.js";
 import { selectorsCard } from "./selectorsCard.js";
 import { cardElement } from "./globalSelectors.js";
+import { handleLike } from "./handleLike.js";
 
 // Обработчик «отправки» формы
 export function handleFormSubmitCard(evt) {
@@ -20,7 +21,7 @@ export function handleFormSubmitCard(evt) {
   const link = linkInput.value;
 
   // Добавляем новую карточку в начало контейнера
-  const newCard = createCard(placeName, link, selectorsCard);
+  const newCard = createCard(placeName, link, selectorsCard, handleLike);
   cardContainer.prepend(newCard);
 
   // Закрываем popup
