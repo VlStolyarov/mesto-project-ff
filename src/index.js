@@ -18,6 +18,10 @@ import {
   imageCloseButton,
   popupTitle,
   popupImage,
+  profileTitle,
+  profileDescription,
+  nameInput,
+  jobInput,
 } from "./globalSelectors.js";
 import { selectorsCard } from "./selectorsCard.js";
 import { handleLike } from "./handleLike.js";
@@ -70,6 +74,13 @@ popupBigImg.addEventListener("click", (event) => {
 
 // Редактирование профиля
 popupEditProfileOpenButton.addEventListener("click", () => {
+  const currentName = profileTitle.textContent; // Текущее имя
+  const currentJob = profileDescription.textContent; // Текущая работа
+
+  // Заполняем инпуты значениями
+  nameInput.value = currentName; // Вставляем текущее имя в инпут
+  jobInput.value = currentJob; // Вставляем текущее описание в инпут
+
   openModal(popupEditProfile); // Открываем popup редактирования профиля
 });
 
