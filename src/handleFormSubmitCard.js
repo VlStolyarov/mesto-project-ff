@@ -21,7 +21,14 @@ export function handleFormSubmitCard(evt) {
   const link = linkInput.value;
 
   // Добавляем новую карточку в начало контейнера
-  const newCard = createCard(placeName, link, selectorsCard, handleLike);
+  const newCard = createCard(
+    placeName,
+    link,
+    selectorsCard,
+    handleLike,
+    openImagePopup,
+    deleteCard
+  );
   cardContainer.prepend(newCard);
 
   // Закрываем popup

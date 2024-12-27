@@ -1,8 +1,13 @@
 import { cardTemplate } from "./globalSelectors";
-import { deleteCard } from "./deleteCard";
-import { openImagePopup } from "./openImagePopup";
 
-export function createCard(name, link, selectors, likeHandler) {
+export function createCard(
+  name,
+  link,
+  selectors,
+  likeHandler,
+  openImagePopup,
+  deleteCard
+) {
   const cardElement = cardTemplate
     .querySelector(selectors.selectorCard)
     .cloneNode(true); // Клонируем содержимое шаблона

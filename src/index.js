@@ -16,16 +16,37 @@ import {
   profileFormElement,
   cardElement,
   imageCloseButton,
+  popupTitle,
+  popupImage,
 } from "./globalSelectors.js";
 import { selectorsCard } from "./selectorsCard.js";
 import { handleLike } from "./handleLike.js";
 
+function openImagePopup(imageSrc, imageAlt) {
+  // Функция для открытия popup-а изображения
+  popupImage.src = imageSrc; // Источник изображения
+  popupImage.alt = imageAlt; // Альтернативный текст
+  popupTitle.textContent = imageAlt; // Текст подписи
+  openModal(popupBigImg); // Открываем popup
+}
+
 //Создание карточек из массива
 initialCards.forEach((card) => {
   cardContainer.append(
-    createCard(card.name, card.link, selectorsCard, handleLike)
+    createCard(
+      card.name,
+      card.link,
+      selectorsCard,
+      handleLike,
+      openImagePopup,
+      deleteCard
+    )
   );
 });
+
+function deleteCard(cardElement) {
+  cardElement.remove(); // Удаляем карточку из DOM
+}
 
 profilePopupOpen.addEventListener("click", () => {
   openModal(popupPlace); // Открываем popup при нажатии на кнопку добавления
