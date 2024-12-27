@@ -21,6 +21,7 @@ import {
 } from "./globalSelectors.js";
 import { selectorsCard } from "./selectorsCard.js";
 import { handleLike } from "./handleLike.js";
+import { deleteCard } from "./deleteCard.js";
 
 function openImagePopup(imageSrc, imageAlt) {
   // Функция для открытия popup-а изображения
@@ -43,10 +44,6 @@ initialCards.forEach((card) => {
     )
   );
 });
-
-function deleteCard(cardElement) {
-  cardElement.remove(); // Удаляем карточку из DOM
-}
 
 profilePopupOpen.addEventListener("click", () => {
   openModal(popupPlace); // Открываем popup при нажатии на кнопку добавления
