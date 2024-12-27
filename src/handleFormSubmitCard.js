@@ -9,6 +9,8 @@ import { createCard } from "./createCard.js";
 import { selectorsCard } from "./selectorsCard.js";
 import { cardElement } from "./globalSelectors.js";
 import { handleLike } from "./handleLike.js";
+import { openImagePopup } from "./index.js";
+import { deleteCard } from "./deleteCard.js";
 
 // Обработчик «отправки» формы
 export function handleFormSubmitCard(evt) {

@@ -27,7 +27,7 @@ import { selectorsCard } from "./selectorsCard.js";
 import { handleLike } from "./handleLike.js";
 import { deleteCard } from "./deleteCard.js";
 
-function openImagePopup(imageSrc, imageAlt) {
+export function openImagePopup(imageSrc, imageAlt) {
   // Функция для открытия popup-а изображения
   popupImage.src = imageSrc; // Источник изображения
   popupImage.alt = imageAlt; // Альтернативный текст
