@@ -40,3 +40,11 @@ export function createCard(
 
   return cardElement; // Возвращаем созданный элемент карточки
 }
+
+export function deleteCard(cardElement) {
+  cardElement.remove(); // Удаляем карточку из DOM
+}
+
+export function handleLike(likeButton, selectors) {
+  likeButton.classList.toggle(selectors.selectorToggleLikeButton); // Like active
+}

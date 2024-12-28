@@ -1,9 +1,10 @@
 import "../pages/index.css";
 import { initialCards } from "./cards.js";
-import { createCard } from "./createCard.js";
+import { createCard } from "./card.js";
 import { openModal, closeModal } from "./modal.js";
-import { handleFormSubmitProfile } from "./handleFormSubmitProfile.js";
-import { handleFormSubmitCard } from "./handleFormSubmitCard.js";
+import { selectorsCard } from "./selectorsCard.js";
+import { handleLike } from "./card.js";
+import { deleteCard } from "./card.js";
 import {
   popupBigImg,
   cardContainer,
@@ -22,10 +23,9 @@ import {
   profileDescription,
   nameInput,
   jobInput,
+  cardNameInput,
+  linkInput,
 } from "./globalSelectors.js";
-import { selectorsCard } from "./selectorsCard.js";
-import { handleLike } from "./handleLike.js";
-import { deleteCard } from "./deleteCard.js";
 
 export function openImagePopup(imageSrc, imageAlt) {
   // Функция для открытия popup-а изображения
@@ -72,6 +72,34 @@ popupBigImg.addEventListener("click", (event) => {
   }
 });
 
+// Обработчик «отправки» формы доб карточки
+function handleFormSubmitCard(evt) {
+  evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
+  // Так мы можем определить свою логику отправки.
+  // О том, как это делать, расскажем позже.
+
+  // Получаем значение полей linkInput и cardNameInput из свойства value
+  const placeName = cardNameInput.value;
+  const link = linkInput.value;
+
+  // Добавляем новую карточку в начало контейнера
+  const newCard = createCard(
+    placeName,
+    link,
+    selectorsCard,
+    handleLike,
+    openImagePopup,
+    deleteCard
+  );
+  cardContainer.prepend(newCard);
+
+  // Закрываем popup
+  closeModal(popupPlace);
+
+  // Очищаем форму
+  cardElement.reset();
+}
+
 // Редактирование профиля
 popupEditProfileOpenButton.addEventListener("click", () => {
   const currentName = profileTitle.textContent; // Текущее имя
@@ -93,6 +121,23 @@ popupEditProfile.addEventListener("click", (event) => {
     closeModal(popupEditProfile); // Закрываем popup при клике на область вне формы
   }
 });
+
+function handleFormSubmitProfile(evt) {
+  evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
+  // Так мы можем определить свою логику отправки.
+  // О том, как это делать, расскажем позже.
+
+  // Получите значение полей jobInput и nameInput из свойства value
+  const name = nameInput.value;
+  const job = jobInput.value;
+
+  // Вставьте новые значения с помощью textContent
+  profileTitle.textContent = name;
+  profileDescription.textContent = job;
+
+  // Закрываем попап после сохранения
+  closeModal(popupEditProfile);
+}
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
